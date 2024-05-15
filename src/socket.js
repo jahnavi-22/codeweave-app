@@ -10,5 +10,8 @@ export const initSocket = async() => {              //read documentation of sock
         timeout: 10000
     };
 
-    return io("http://localhost:5000", options);            //backend url of react app
+//https://codeweave-app.onrender.com
+//http://localhost:5000
+
+    return io("https://codeweave-app.onrender.com", options);            //backend url of react app
 }
