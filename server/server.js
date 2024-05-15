@@ -3,7 +3,7 @@ const app = express();
 const http = require("http");
 const path = require('path');
 const { Server } = require('socket.io');            //Server class is being imported to create a new instance of the server
-const ACTIONS = require('./src/Actions');
+const ACTIONS = require('../src/Actions');
 
 const server = http.createServer(app);
 const io = new Server(server);
