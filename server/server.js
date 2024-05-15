@@ -27,6 +27,10 @@ function getConnectedUsers(roomID) {
     });
 }
 
+app.get("/", (req, res) => {
+    res.end("Hello World zi");
+});
+
 io.on("connection", (socket) => {
     console.log("Socket connected " + socket.id);
     
