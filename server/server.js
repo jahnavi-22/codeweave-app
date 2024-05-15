@@ -72,7 +72,7 @@ io.on("connection", (socket) => {
 
 require('dotenv').config();
 
-const port = process.env.PORT;
+const port = process.env.PORT|| 5000;
 
 
 
