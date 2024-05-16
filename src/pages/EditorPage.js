@@ -25,6 +25,7 @@ const EditorPage = () => {
       socketRef.current = await initSocket();                                    //socketRef.current is the current value of the socketRef, initSocket is async hence await is used, returns a promise
       socketRef.current.on('connect_error', (err) => handleErrors(err));
       socketRef.current.on('connect_failed', (err) => handleErrors(err));
+      console.log(users)
 
       function handleErrors(err){
         console.log("Socket error", err);
