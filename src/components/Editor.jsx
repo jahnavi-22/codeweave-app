@@ -8,7 +8,7 @@ import Output from '../components/Output';
 
 
 const CodeEditor = ({socketRef, roomID, onCodeChange, onLanguageChange}) => {
-  const [value, setValue] = useState({});
+  const [value, setValue] = useState({});         //code typed
   const [language, setLanguage] = useState("Choose Language");
 
   

@@ -18,6 +18,11 @@ const EditorPage = () => {
   const codeRef = useRef({ code: '', language: '' });
   const [language, setLanguage] = useState("Choose Language");
 
+
+
+  useEffect(()=>{
+    console.log(users);
+  },[users])
   //useRef to store the socket connection instance, used to store data that will not trigger a re-render on change unlike useState 
   
   useEffect(()=>{
