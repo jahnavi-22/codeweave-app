@@ -38,6 +38,8 @@ const EditorPage = () => {
         reactNavigator('/');
       }
 
+      console.log("hello");
+
       //listen to join event
       socketRef.current.emit(ACTIONS.JOIN, {
         roomID: roomID,
