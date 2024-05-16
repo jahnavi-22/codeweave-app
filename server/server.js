@@ -31,14 +31,14 @@ app.get("/", (req, res) => {
     res.end("Hello World zi");
 });
 
-io.on("connection", (socket) => {
+io.on("connect", (socket) => {
     console.log("Socket connected " + socket.id);
     
     socket.on(ACTIONS.JOIN, ({roomID, username}) => {
         userSocketMap[socket.id] = username;
         socket.join(roomID);
         const users = getConnectedUsers(roomID);
-        // console.log(users);
+        console.log(users);
         users.forEach(({socketID}) => {                     //send the joined event to all the users in the room to notify them of the new user
             socket.in(socketID).emit(ACTIONS.JOINED, {          //sending to socketRef on editor page
                 users,

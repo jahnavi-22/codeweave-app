@@ -45,7 +45,8 @@ const EditorPage = () => {
           toast.success(`${username} has joined the room.`);
           console.log(`${username} has joined the room.`)
         }
-        setUsers(users);                                                        //updating the users state with the users received from the server
+        setUsers(users);    
+                                                          //updating the users state with the users received from the server
         console.log("Updated users", users);
         socketRef.current.emit(ACTIONS.SYNC_CODE, {
           code: codeRef.current.code,
