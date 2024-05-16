@@ -47,23 +47,26 @@ const EditorPage = () => {
       });
 
       //listen to joined event
-      socketRef.current.on(ACTIONS.JOINED, ({users, username, socketID}) => {
-        if(username && username !== location.state.username){
-          toast.success(`${username} has joined the room.`);
-          console.log(`${username} has joined the room.`)
-        }
-        setUsers(users);    
-                                                          //updating the users state with the users received from the server
-        console.log("Updated users", users);
-        socketRef.current.emit(ACTIONS.SYNC_CODE, {
-          code: codeRef.current.code,
-          socketID,
-        })
-        socketRef.current.emit(ACTIONS.LANGUAGE_CHANGE, {
-          language: codeRef.current.language,
-          socketID,
-        })
-      })
+      socket.on(ACTIONS.JOIN, ({roomID, username}) => {
+    userSocketMap[socket.id] = username;
+    socket.join(roomID);
+    const users = getConnectedUsers(roomID);
+    console.log(users);
+
+    // Emit JOINED event only to the user who just joined
+    socket.emit(ACTIONS.JOINED, {
+        users,
+        username,
+        socketID: socket.id,
+    });
+
+    // Emit updated user list to all users in the room
+    socket.broadcast.to(roomID).emit(ACTIONS.JOINED, {
+        users,
+        username,
+        socketID: socket.id,
+    });
+});
 
       //listen to language change event
       socketRef.current.on(ACTIONS.LANGUAGE_CHANGE, ({language}) => {
